@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+html, body, #root{
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+  text-align: left;
+  font-size: 12px;
+  font-style: normal;
+  background: #F5F5F5;
+}
+
+.saira-100 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:100 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 100;
+}
+
+.saira-200 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:200 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 200;
+}
+
+.saira-300 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:300 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 300;
+}
+
+.saira-400 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 400;
+}
+
+.saira-500 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:500 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 500;
+}
+
+.saira-600 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:600 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 600;
+}
+
+.saira-700 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:700 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 700;
+}
+
+.saira-800 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:800 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 800;
+}
+
+.saira-900 {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:900 ;
+  font-style: normal;
+  font-variation-settings:"wdth" 900;
+}
+
+
+@media (min-width: 640px) {
+  table {
+    display: inline-table !important;
+  }
+
+  thead tr:not(:first-child) {
+    display: none;
+  }
+}
+
+td:not(:last-child) {
+  border-bottom: 0;
+}
+
