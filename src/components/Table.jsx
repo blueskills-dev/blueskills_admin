@@ -34,7 +34,8 @@ export default function Table({
     let d = tableData.filter((this_data)=>{  
       let found = false
       for(let i = 0; i < headers.length; i++){
-        console.log(headers[i].id, headers[i].search, this_data[headers[i].id])
+        console.log(headers[i].id, headers[i].search, this_data[headers[i].id], this_data)
+
         if(headers[i].search && this_data[headers[i].id].toLowerCase().includes(searchText.toLowerCase())){
           found = true
 
@@ -43,7 +44,7 @@ export default function Table({
       }
 
       if(found === true && typeof tab !== "undefined"){
-        console.log(this_data[tab.row], tabValue, "here")
+        console.log(this_data[tab.row], tab, tabValue, "here", tab.row, tab)
         if(this_data[tab.row].toLowerCase().includes(tabValue.toLowerCase())){
           found = true
         }else{
@@ -104,7 +105,7 @@ export default function Table({
       </div>
       <div className='w-full overflow-auto'>
       <table className="min-w-full border divide-y divide-gray-200">
-        <thead className="bg-secondary">
+        <thead className="bg-orange-600">
           <tr>
             {headers.map((keys, index)=>{
               return(
