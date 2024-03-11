@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 import NavInner from './NavInner'
 import menu from '../assets/icons/menu.svg'
 import home from '../assets/home.svg'
-import project from '../assets/icons/projects.svg'
-import farmers from '../assets/icons/farmers.svg'
+import Invoice from '../assets/icons/projects.svg'
+import Users from '../assets/icons/farmers.svg'
 
 export default function Sidebar() {
     const [toggleNav, setToggleNav] = useState(false)
@@ -38,8 +38,8 @@ export default function Sidebar() {
             :'invisible md:visible'}
           `} >
             <NavInner iconImage={home} toggleNav={toggleNav} text="Home"/>
-            <NavInner iconImage={project} toggleNav={toggleNav} text="Projects"/>
-            <NavInner iconImage={farmers} toggleNav={toggleNav} text="Farmers"/>
+            <NavInner iconImage={Invoice} toggleNav={toggleNav} text="Invoice"/>
+            <NavInner iconImage={Users} toggleNav={toggleNav} text="Users"/>
         </div>
       </div>
   )
