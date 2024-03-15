@@ -1,15 +1,15 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-import Sidebar from '../components/Sidebar'
-import QuaterWidget from '../components/QuaterWidget'
-import FullSizedWidget from '../components/FullSizedWidget'
+import Sidebar from '../../components/Sidebar'
+import QuaterWidget from '../../components/QuaterWidget'
+import FullSizedWidget from '../../components/FullSizedWidget'
 import Content
- from '../components/Content'
-import PageBody from '../components/PageBody'
-import MainWrapper from '../components/MainWrapper'
-import ScollableFlex from '../components/ScollableFlex'
-import Title from '../components/Title'
-import Table from '../components/Table'
+ from '../../components/Content'
+import PageBody from '../../components/PageBody'
+import MainWrapper from '../../components/MainWrapper'
+import ScollableFlex from '../../components/ScollableFlex'
+import Title from '../../components/Title'
+import Table from '../../components/Table'
 import { Link } from 'react-router-dom'
 
 
@@ -128,8 +128,9 @@ const Subcategory = () => {
     //table action
     const tableButton = {
       text: 'Create',
+
       action: () => {
-        alert("take me to create")
+        return <Link to='/subcategory/create'></Link>
       }
     }
 

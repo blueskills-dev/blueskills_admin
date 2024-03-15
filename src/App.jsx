@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import BlueskillsServices from "./pages/blueskills-service/BlueskillsServices"
-import SubCategory from "./pages/Subcategory"
+import SubCategory from "./pages/subcategory/Subcategory"
 import Offerings from "./pages/blueskills-service/BlueskillsServices"
 import Bookings from "./pages/bookings/Bookings"
 import Invoice from "./pages/Invoice"
@@ -14,12 +14,20 @@ import ServiceGalleryDetails from "./pages/service-gallery/ServiceGalleryDetails
 import BookingDetails from "./pages/bookings/BookingDetails"
 import PaymentDetails from "./pages/payment/PaymentDetails"
 import BluskillsServicesDetails from "./pages/blueskills-service/BluskillsServicesDetails"
+import CreateSub from "./pages/subcategory/CreateSubcategory"
+import CreateUser from "./pages/users/createUser"
+import CreateService from "./pages/blueskills-service/CreateService"
+import CreateBooking from "./pages/bookings/CreateBookings"
+import CreateGallery from "./pages/service-gallery/CreateGallery"
+import CreatePartner from "./pages/service-partners/CreatePartner"
+import CreateCategory from "./pages/category/CreateCategory"
 
 
 const App = () => {
   return (
     <Routes>
       <Route path='/category' element={<BlueskillsServices/>}/>
+      <Route path='/subcategory' element={<SubCategory/>}/>
       <Route path='/category/:id' element={<SubCategory/>}/> //From category to sub-category
       <Route path='/subcategory/:id' element={<Offerings/>}/> //From the Sub-category page to the offerings page
       <Route path='/category/:id/offerings' element={<Offerings/>}/> //From the Category page directly to the offerings page bypassing sub-category
@@ -35,6 +43,13 @@ const App = () => {
       <Route path='/booking-details/:bookingId' element={<BookingDetails />}/>
       <Route path='/payment-details/:paymentId' element={<PaymentDetails />}/>
       <Route path='/blueskills-details/:serviceId' element={<BluskillsServicesDetails />}/>
+      <Route path='/subcategory/create' element={<CreateSub />}/>
+      <Route path='/user/create' element={<CreateUser />}/>
+      <Route path='/bookings/create' element={<CreateBooking />}/>
+      <Route path='/category/create' element={<CreateCategory />}/>
+      <Route path='/partner/create' element={<CreatePartner />}/>
+      <Route path='/blueskills-service/create' element={<CreateService />}/>
+      <Route path='/service-gallery/create' element={<CreateGallery />}/>
   </Routes>
   )
 }

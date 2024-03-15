@@ -197,10 +197,6 @@ const Invoice = () => {
               (<div className="">
                 {row["updated_at"]}</div>
               ),
-              "created_at": 
-              (<div className="">
-                {row["created_at"]}</div>
-              ),
             };
           })
         : [];
