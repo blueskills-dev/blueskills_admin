@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import BlueskillsServices from "./pages/blueskills-service/BlueskillsServices"
+import Category from "./pages/category/Category"
 import SubCategory from "./pages/subcategory/Subcategory"
 import Offerings from "./pages/blueskills-service/BlueskillsServices"
 import Bookings from "./pages/bookings/Bookings"
@@ -26,7 +27,8 @@ import CreateCategory from "./pages/category/CreateCategory"
 const App = () => {
   return (
     <Routes>
-      <Route path='/category' element={<BlueskillsServices/>}/>
+      <Route path="blueskills-service" element={<BlueskillsServices />} />
+      <Route path='/category' element={<Category/>}/>
       <Route path='/subcategory' element={<SubCategory/>}/>
       <Route path='/category/:id' element={<SubCategory/>}/> //From category to sub-category
       <Route path='/subcategory/:id' element={<Offerings/>}/> //From the Sub-category page to the offerings page
@@ -40,7 +42,7 @@ const App = () => {
       <Route path='/user-details/:userId' element={<UserDetails />}/>
       <Route path='/service-details/:serviceId' element={<ServicePartnerDetails />}/>
       <Route path='/gallery-details/:serviceId' element={<ServiceGalleryDetails />}/>
-      <Route path='/booking-details/:bookingId' element={<BookingDetails />}/>
+      <Route path='/bookings-details/:bookingId' element={<BookingDetails />}/>
       <Route path='/payment-details/:paymentId' element={<PaymentDetails />}/>
       <Route path='/blueskills-details/:serviceId' element={<BluskillsServicesDetails />}/>
       <Route path='/subcategory/create' element={<CreateSub />}/>

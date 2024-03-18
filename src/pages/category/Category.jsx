@@ -13,12 +13,13 @@ import Title from '../../components/Title'
 import DetailsList from '../../components/DetailsList'
 import HarvestSlides from '../../components/HarvestSlides'
 import Table from '../../components/Table'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
-const AudioContextLatencyCategory = () => {
+const Category = () => {
     const [toggleNav, setToggleNav] = useState(false)
+    const navigate = useNavigate()
 
   
     //dataSource --- the non-filterable data source
@@ -160,7 +161,7 @@ const AudioContextLatencyCategory = () => {
     const tableButton = {
       text: 'Create',
       action: () => {
-        alert("take me to create")
+        navigate('/category/create')
       }
     }
 
@@ -211,4 +212,4 @@ const AudioContextLatencyCategory = () => {
       )
     }
 
-export default AudioContextLatencyCategory
+export default Category

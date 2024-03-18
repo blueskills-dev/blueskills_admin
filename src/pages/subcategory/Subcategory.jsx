@@ -10,12 +10,13 @@ import MainWrapper from '../../components/MainWrapper'
 import ScollableFlex from '../../components/ScollableFlex'
 import Title from '../../components/Title'
 import Table from '../../components/Table'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
 const Subcategory = () => {
     const [toggleNav, setToggleNav] = useState(false)
+    const navigate = useNavigate()
 
   
     //dataSource --- the non-filterable data source
@@ -130,7 +131,7 @@ const Subcategory = () => {
       text: 'Create',
 
       action: () => {
-        return <Link to='/subcategory/create'></Link>
+        navigate('/subcategory/create')
       }
     }
 
