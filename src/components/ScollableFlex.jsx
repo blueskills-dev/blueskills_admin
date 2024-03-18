@@ -11,8 +11,8 @@ export default function ScollableFlex(props) {
         flex gap-2 
         w-100
         m-auto
-        h-auto
-        py-[10px]
+        h-[100px]
+        pb-[10px]
         pr-[17px]
         '>
             {props.children}

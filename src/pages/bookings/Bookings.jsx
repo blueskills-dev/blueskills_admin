@@ -278,7 +278,7 @@ const ServiceGallery = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Sub category"
+                      title="Bookings"
                       tab={tab} 
                       headers={headers}
                       tableButton={tableButton}

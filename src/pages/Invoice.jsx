@@ -243,7 +243,7 @@ const Invoice = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Sub category"
+                      title="Invoice"
                       tab={tab} 
                       headers={headers}
                       tableButton={tableButton}

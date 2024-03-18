@@ -2,17 +2,13 @@ import React from 'react'
 
 export default function MainWrapper(props) {
   return (
-    <div className='
-        flex-1 
-        h-[700px] md:h-screen
-        w-full'>
-            <div className='
-            flex 
-            flex-col
-            h-[700px] md:h-screen
-            gap-4'>
-            {props.children}
-        </div>
-    </div>
+          <div className={`
+              flex 
+              flex-col
+              w-full h-[700px] md:h-full py-4
+              gap-4 ${typeof props.class !== "undefined" ? props.class : ''}`}>
+              
+              {props.children}
+          </div>
   )
 }

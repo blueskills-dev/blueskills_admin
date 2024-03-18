@@ -327,7 +327,7 @@ const Users = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Sub category"
+                      title="Users"
                       tab={tab} 
                       headers={headers}
                       tableButton={tableButton}

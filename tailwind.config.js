@@ -8,8 +8,8 @@ export default {
     extend: {
       colors: {
           transparent: 'transparent',
-          'primary': '#F36E26',
-          'secondary': '#5FAD56',
+          'primary': '#0F2A60',
+          'secondary': '#FFB600',
           'green':{
             100:"#5FAD56",
             200: '#A1CF9B'

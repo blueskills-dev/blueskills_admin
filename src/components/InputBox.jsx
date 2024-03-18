@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputBox({inputAction, inputIcon}) {
+export default function InputBox({inputAction, inputIcon, placeholder, type}) {
   return (
     <div className='w-full h-full bg-gray-100 rounded-[5px] flex flex-row '>
         {typeof inputIcon !== "undefined" &&
@@ -9,10 +9,11 @@ export default function InputBox({inputAction, inputIcon}) {
             </div>
         }
         <input className='w-full bg-transparent 
-        px-[10px]' placeholder='Search'
-        onChange={(e)=>{
+        px-[10px]' placeholder={`${typeof placeholder !== "undefined" ? placeholder : 'Search'}`}
+        onChange={(value)=>{
             inputAction(e.target.value)
         }}
+        type={`${typeof type !== "undefined" ? type : 'Search'}`}
         />
     </div>
   )

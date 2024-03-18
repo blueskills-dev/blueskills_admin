@@ -62,7 +62,7 @@ export default function Table({tabledata, pageSize}) {
         <div key={index} className={`w-[30px] h-[30px] 
           p-[5px] bg-grey-100 
           text-center rounded-[5px] 
-          cursor-pointer saira-600
+          cursor-pointer fontvariation-600
           ${pageno === page ? 'bg-primary text-white' : 'bg-white'}
           `}
           onClick={()=>setPage(pageno)}

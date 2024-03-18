@@ -22,23 +22,28 @@ import CreateBooking from "./pages/bookings/CreateBookings"
 import CreateGallery from "./pages/service-gallery/CreateGallery"
 import CreatePartner from "./pages/service-partners/CreatePartner"
 import CreateCategory from "./pages/category/CreateCategory"
+import Login from "./pages/Login"
+import Dashboard from "./pages/Dashboard"
+import Partners from "./pages/service-partners/ServicePartner"
 
 
 const App = () => {
   return (
     <Routes>
+      <Route path='/' element={<Dashboard />}/>
       <Route path="blueskills-service" element={<BlueskillsServices />} />
-      <Route path='/category' element={<Category/>}/>
-      <Route path='/subcategory' element={<SubCategory/>}/>
-      <Route path='/category/:id' element={<SubCategory/>}/> //From category to sub-category
-      <Route path='/subcategory/:id' element={<Offerings/>}/> //From the Sub-category page to the offerings page
-      <Route path='/category/:id/offerings' element={<Offerings/>}/> //From the Category page directly to the offerings page bypassing sub-category
-      <Route path='/bookings' element={<Bookings/>}/>
-      <Route path='/invoice' element={<Invoice/>}/>
-      <Route path='/service-gallery' element={<ServiceGallery/>}/>
-      <Route path='/payments' element={<Payments/>}/>
-      <Route path='/service-partners' element={<ServicePartner/>}/>
-      <Route path='/users' element={<Users/>}/>
+      <Route path='/category' element={<Category />}/>
+      <Route path='/partners' element={<Partners />}/>
+      <Route path='/subcategory' element={<SubCategory />}/>
+      <Route path='/category/:id' element={<SubCategory />}/> //From category to sub-category
+      <Route path='/subcategory/:id' element={<Offerings />}/> //From the Sub-category page to the offerings page
+      <Route path='/category/:id/offerings' element={<Offerings />}/> //From the Category page directly to the offerings page bypassing sub-category
+      <Route path='/bookings' element={<Bookings />}/>
+      <Route path='/invoice' element={<Invoice />}/>
+      <Route path='/service-gallery' element={<ServiceGallery />}/>
+      <Route path='/payments' element={<Payments />}/>
+      <Route path='/service-partners' element={<ServicePartner />}/>
+      <Route path='/users' element={<Users />}/>
       <Route path='/user-details/:userId' element={<UserDetails />}/>
       <Route path='/service-details/:serviceId' element={<ServicePartnerDetails />}/>
       <Route path='/gallery-details/:serviceId' element={<ServiceGalleryDetails />}/>
@@ -52,6 +57,7 @@ const App = () => {
       <Route path='/partner/create' element={<CreatePartner />}/>
       <Route path='/blueskills-service/create' element={<CreateService />}/>
       <Route path='/service-gallery/create' element={<CreateGallery />}/>
+      <Route path='/login' element={<Login />}/>
   </Routes>
   )
 }

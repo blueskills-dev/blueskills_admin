@@ -34,9 +34,8 @@ export default function Table({
     let d = tableData.filter((this_data)=>{  
       let found = false
       for(let i = 0; i < headers.length; i++){
-        console.log(headers[i].id, headers[i].search, this_data[headers[i].id], this_data)
-
-        if(headers[i].search && this_data[headers[i].id].toLowerCase().includes(searchText.toLowerCase())){
+        console.log(headers[i].id, headers[i].search, this_data[headers[i].id])
+        if(headers[i].search && this_data[headers[i].id].toString().toLowerCase().includes(searchText.toString().toLowerCase())){
           found = true
 
           break;
@@ -44,14 +43,13 @@ export default function Table({
       }
 
       if(found === true && typeof tab !== "undefined"){
-        console.log(this_data[tab.row], tab, tabValue, "here", tab.row, tab)
+        console.log(this_data[tab.row], tabValue, "here")
         if(this_data[tab.row].toLowerCase().includes(tabValue.toLowerCase())){
           found = true
         }else{
           found = false
         }
       }
-
       return found
     })
     setDataSource(d)
@@ -61,17 +59,18 @@ export default function Table({
     <div>
       <div className='flex flex-row align-center justify-between pb-[10px] flex-wrap'>
         <div className='text-xl w-full md:w-auto pt-[20px] md:py-[10px]'>{title}</div>
-        <div className='flex flex-row gap-[10px] w-full 
-          md:w-1/2 py-[20px] md:py-[0px] p-[10px]'>
-          <div className='h-[40px] w-2/3 '>
-            <InputBox inputIcon={search} inputAction={setSearchText} />
-          </div>
+        <div className='flex flex-row-reverse gap-[10px] w-full 
+          md:w-1/2 py-[20px] md:py-[0px]'>
           {typeof tableButton !== "undefined" &&
-          <div className='h-[40px] w-1/3 rounded-[5px] 
-          bg-primary hover:bg-secondary cursor-pointer text-white text-xl text-center pt-[10px]'
+          <div className='h-[40px] min-w-[150px] rounded-[5px] px-[20px]
+          bg-primary hover:bg-secondary cursor-pointer text-white text-lg text-center pt-[10px]'
           onClick={()=>tableButton.action()}
           >{tableButton.text}</div>
           }
+          <div className='h-[40px] w-2/3 '>
+            <InputBox inputIcon={search} inputAction={setSearchText} />
+          </div>
+          
         </div>
       </div>
       <div className=''>
@@ -105,7 +104,7 @@ export default function Table({
       </div>
       <div className='w-full overflow-auto'>
       <table className="min-w-full border divide-y divide-gray-200">
-        <thead className="bg-orange-600">
+        <thead className="bg-secondary">
           <tr>
             {headers.map((keys, index)=>{
               return(
@@ -139,7 +138,7 @@ export default function Table({
         <div key={index} className={`w-[30px] h-[30px] 
           p-[5px] bg-grey-100 
           text-center rounded-[5px] 
-          cursor-pointer saira-600
+          cursor-pointer fontvariation-600
           ${pageno === page ? 'bg-primary text-white' : 'bg-white'}
           `}
           onClick={()=>setPage(pageno)}
