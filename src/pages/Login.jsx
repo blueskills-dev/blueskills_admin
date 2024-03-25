@@ -1,10 +1,36 @@
-import React from 'react'
-import ButtonBox from '../components/ButtonBox'
 import InputField from '../components/InputField'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/blueskillslogo.svg'
+import { useState } from 'react'
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const BASE_URL = "https://blueskills3-latest.onrender.com/"
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}auth/token/login/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        navigate('/');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError('An error occurred. Please try again.');
+    }
+  };
   const navigate = useNavigate()
   return (
     <div className='h-screen p-0 m-0 relative md:flex md:flex-row overflow-auto'>
@@ -19,6 +45,7 @@ export default function Login() {
             <div className='fontvariation-600 text-3xl text-center text-primary'>Login</div>
             <InputField
               title="Email" 
+              onChange={(e) => setEmail(e.target.value)}
               inputAction={(value)=>{
                 console.log(value)
               }}  
@@ -31,6 +58,7 @@ export default function Login() {
               inputAction={(value)=>{
                 console.log(value)
               }}  
+              onChange={(e) => setPassword(e.target.value)}
               type="password" 
               placeholder="Your password"
             />
@@ -40,7 +68,7 @@ export default function Login() {
             className='h-[50px] bg-primary rounded-[5px] mt-[30px] cursor-pointer'
             >
               <div className='fontvariation-600 text-white text-2xl text-center pt-[12px]'
-              onClick={()=>navigate('/')}
+              onClick={handleLogin}
               >Login</div>
             </div>
           
