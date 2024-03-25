@@ -24,7 +24,7 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username: email, password }),
       });
 
       if (response.ok) {
@@ -50,7 +50,7 @@ export default function Login() {
         <div className='w-[300px] mx-auto py-[100px]'>
           <div className='fontvariation-600 text-3xl text-center text-primary'>Login</div>
           <InputField
-            title="Email"
+            title="Username"
             value={email}
             inputAction={(e)=>{
               setEmail(e.target.value)
