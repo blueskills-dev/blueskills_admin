@@ -3,15 +3,12 @@ import { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import QuaterWidget from '../../components/QuaterWidget'
 import FullSizedWidget from '../../components/FullSizedWidget'
-import SideBarWidget from '../../components/SideBarWidget'
 import Content
  from '../../components/Content'
 import PageBody from '../../components/PageBody'
 import MainWrapper from '../../components/MainWrapper'
 import ScollableFlex from '../../components/ScollableFlex'
 import Title from '../../components/Title'
-import DetailsList from '../../components/DetailsList'
-import HarvestSlides from '../../components/HarvestSlides'
 import Table from '../../components/Table'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -21,92 +18,21 @@ const Category = () => {
     const [toggleNav, setToggleNav] = useState(false)
     const navigate = useNavigate()
 
-  
-    //dataSource --- the non-filterable data source
-    const tableData = 
-    [
-        {
-            "id": 1,
-            "service": "Cleaning",
-            "description": "Offering professional cleaning services for homes and offices.",
-            "status": "active"
-        },
-        {
-            "id": 2,
-            "service": "Plumbing",
-            "description": "Providing expert plumbing solutions for residential and commercial properties.",
-            "status": "inactive"
-        },
-        {
-            "id": 3,
-            "service": "Electrical and Electronics",
-            "description": "Specializing in electrical and electronics repair and installation services.",
-            "status": "active"
-        },
-        {
-            "id": 4,
-            "service": "Hair stylist",
-            "description": "Creating trendy hairstyles for men and women.",
-            "status": "inactive"
-        },
-        {
-            "id": 5,
-            "service": "Laundry",
-            "description": "Professionally cleaning and ironing clothes with care.",
-            "status": "active"
-        },
-        {
-            "id": 6,
-            "service": "AC Repairs and maintenance",
-            "description": "Offering maintenance and repair services for air conditioning systems.",
-            "status": "active"
-        },
-        {
-            "id": 7,
-            "service": "Barbers",
-            "description": "Providing grooming services and modern haircuts for men.",
-            "status": "inactive"
-        },
-        {
-            "id": 8,
-            "service": "Meals",
-            "description": "Serving delicious and nutritious meals for breakfast, lunch, and dinner.",
-            "status": "active"
-        },
-        {
-            "id": 9,
-            "service": "Fumigation",
-            "description": "Eliminating pests and insects from homes and commercial spaces.",
-            "status": "active"
-        },
-        {
-            "id": 10,
-            "service": "Generators",
-            "description": "Repairing and maintaining generators for uninterrupted power supply.",
-            "status": "inactive"
-        }
-  ]
-  
-  
-    // table tab for filtering (takes in <row> and <options>) <options> are values in row for the tab filtering 
-    const tab = {
-      row:'status',
-      options:['active', 'inactive']
-    }
+    // const tab = {
+    //   row:'status',
+    //   options:['active', 'inactive']
+    // }
     //dataSource --- settings for each column [id, search[boolean]]
     const headers = [
       {
         id:"id"
       },
       {
-        id:"service",
+        id:"name",
         search: true
       },
       {
         id:"description",
-      },
-      {
-        id:"Status",
       },
       {
         id:"Subcategory",
@@ -115,11 +41,40 @@ const Category = () => {
         id:"Offerings",
       },
     ]
-    //dataSource --- the filterable data source
+
+
+    const [tableData, setTableData] = useState([]);
+
+
     const [dataSource, setDataSource] = useState(tableData);
-    //table rows state
+
     const [dataRows, setDataRows] = useState([])
-    // creating table rows state based on filtered datasource
+
+    
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+            const auth_token = localStorage.getItem('auth_token');
+
+            const response = await fetch('https://blueskills3-latest.onrender.com/category/', {
+              method: "GET", 
+              headers: {
+                'Authorization': `Token ${auth_token}`
+              }
+            });
+              const data = await response.json();
+              setTableData(data);
+              setDataSource(data);
+              console.log(auth_token)
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+
     useEffect(()=>{
       const dS =
       dataSource &&
@@ -127,16 +82,12 @@ const Category = () => {
           ? dataSource.map((row, idx) => {
             return {
               id: idx + 1,
-              "service": 
+              "name": 
               (<div className="">
-                {row["service"]}</div>
+                {row["name"]}</div>
               ),
               "description": (
                 <div>{row["description"]}</div>
-              ),
-              "Status": 
-              (<div className="">
-                {row["status"]}</div>
               ),
               "Subcategory": 
                 (<Link to={`/category/${row.id}`}>
@@ -197,8 +148,7 @@ const Category = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Category"
-                      tab={tab} 
+                      title="Category" 
                       headers={headers}
                       tableButton={tableButton}
                     />

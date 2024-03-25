@@ -3,31 +3,32 @@ import InputField from '../components/InputField';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/icons/blueskillslogo.svg';
 
+
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://blueskills3-latest.onrender.com/auth/token/login", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: email, password }),
-      });
+      const response = await fetch(
+        'https://blueskills3-latest.onrender.com/auth/token/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username: email, password }),
+        }
+      );
 
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('auth_token', data.auth_token);
+        console.log('auth_token:', data.auth_token); // Add this line
         navigate('/dashboard');
       } else {
         const errorData = await response.json();
@@ -39,6 +40,12 @@ export default function Login() {
     }
   };
 
+  // Clear the authentication token on logout
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    // Perform any additional logout actions, such as redirecting to the login page
+    navigate('/login');
+  };
   return (
     <div className='h-screen p-0 m-0 relative md:flex md:flex-row overflow-auto'>
       <div className='w-full md:w-1/2 h-[100px] md:h-full bg-primary flex flex-col justify-center'>

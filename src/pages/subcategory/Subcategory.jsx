@@ -18,55 +18,12 @@ const Subcategory = () => {
     const [toggleNav, setToggleNav] = useState(false)
     const navigate = useNavigate()
 
-  
-    //dataSource --- the non-filterable data source
-    const tableData = 
-    [
-      {   "id": 1,
-          "service": "Home Cleaning",
-          "description": "Site Cleaning",
-          "status": "active"
-      },
-      {
-        "id": 2,
-          "service": "Street Cleaning",
-          "description": "Creating custom metal structures, gates, and decorative pieces.",
-          "status": "active"
-      },
-      {
-        "id": 3,
-          "service": "Site Cleaning",
-          "description": "Site Cleaning",
-          "status": "active"
-      },
-      {
-        "id": 4,
-          "service": "Street Cleaning",
-          "description": "Creating custom metal structures, gates, and decorative pieces.",
-          "status": "active"
-      },
-     
-      {
-        "id": 5,
-          "service": "Shop Cleaning",
-          "description": "Designing and producing unique textiles for fashion and home decor.",
-          "status": "active"
-      },
-  ]
-  
-  
-    // table tab for filtering (takes in <row> and <options>) <options> are values in row for the tab filtering 
-    const tab = {
-      row:'status',
-      options:['active', 'inactive']
-    }
-    //dataSource --- settings for each column [id, search[boolean]]
     const headers = [
       {
         id:"id"
       },
       {
-        id:"service",
+        id:"name",
         search: true
       },
       {
@@ -82,11 +39,40 @@ const Subcategory = () => {
         id:"Offerings",
       },
     ]
-    //dataSource --- the filterable data source
+
+    const [tableData, setTableData] = useState([]);
+
+
     const [dataSource, setDataSource] = useState(tableData);
-    //table rows state
+
     const [dataRows, setDataRows] = useState([])
-    // creating table rows state based on filtered datasource
+
+
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+            const auth_token = localStorage.getItem('auth_token');
+
+            const response = await fetch('https://blueskills3-latest.onrender.com/subcategory/', {
+              method: "GET", 
+              headers: {
+                'Authorization': `Token ${auth_token}`
+              }
+            });
+              const data = await response.json();
+              setTableData(data);
+              setDataSource(data);
+              console.log(auth_token)
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+
     useEffect(()=>{
       const dS =
       dataSource &&
@@ -94,16 +80,12 @@ const Subcategory = () => {
           ? dataSource.map((row, idx) => {
             return {
               id: idx + 1,
-              "service": 
+              "name": 
               (<div className="">
-                {row["service"]}</div>
+                {row["name"]}</div>
               ),
               "description": (
                 <div>{row["description"]}</div>
-              ),
-              "Status": 
-              (<div className="">
-                {row["status"]}</div>
               ),
               "Subcategory": 
               (<div className="w-auto h-[30px] bg-red-600 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center"
@@ -168,7 +150,6 @@ const Subcategory = () => {
                       setDataSource={setDataSource}
                       pageSize={5} 
                       title="Sub category"
-                      tab={tab} 
                       headers={headers}
                       tableButton={tableButton}
                     />
