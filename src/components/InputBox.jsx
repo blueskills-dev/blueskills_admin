@@ -10,9 +10,7 @@ export default function InputBox({inputAction, inputIcon, placeholder, type}) {
         }
         <input className='w-full bg-transparent 
         px-[10px]' placeholder={`${typeof placeholder !== "undefined" ? placeholder : 'Search'}`}
-        onChange={(value)=>{
-            inputAction(e.target.value)
-        }}
+        onChange={inputAction}
         type={`${typeof type !== "undefined" ? type : 'Search'}`}
         />
     </div>

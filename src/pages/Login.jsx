@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputField from '../components/InputField';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/icons/blueskillslogo.svg';
@@ -28,7 +28,7 @@ export default function Login() {
       });
 
       if (response.ok) {
-        navigate('/');
+        navigate('/dashboard');
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -52,7 +52,9 @@ export default function Login() {
           <InputField
             title="Email"
             value={email}
-            // onChange={handleEmailChange} 
+            inputAction={(e)=>{
+              setEmail(e.target.value)
+            }} 
             type="text"
             placeholder="Your email address"
           />
@@ -60,7 +62,9 @@ export default function Login() {
           <InputField
             title="Password"
             value={password}
-            // onChange={handlePasswordChange} 
+            inputAction={(e)=>{
+              setPassword(e.target.value)
+            }} 
             type="password"
             placeholder="Your password"
           />
