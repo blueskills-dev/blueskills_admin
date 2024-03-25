@@ -48,7 +48,7 @@ export default function Sidebar() {
               text="Home"
               active={location.pathname.toString().toLowerCase().indexOf('dashboard') > 0 ? true : false}
               action={()=>{
-                navigate('/')
+                navigate('/dashboard')
               }}
             />
             <NavInner iconImage={users} 

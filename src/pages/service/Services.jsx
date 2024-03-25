@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import QuaterWidget from '../../components/QuaterWidget'
 import FullSizedWidget from '../../components/FullSizedWidget'
-import Content
- from '../../components/Content'
+import Content from '../../components/Content'
 import PageBody from '../../components/PageBody'
 import MainWrapper from '../../components/MainWrapper'
 import ScollableFlex from '../../components/ScollableFlex'
@@ -14,57 +13,57 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 
-const ServicePartner = () => {
+const Services = () => {
     const [toggleNav, setToggleNav] = useState(false)
     const navigate = useNavigate()
-
-
+    
+  
+    // table tab for filtering (takes in <row> and <options>) <options> are values in row for the tab filtering 
+    const tab = {
+      row:'status',
+      options:['active', 'inactive']
+    }
+    //dataSource --- settings for each column [id, search[boolean]]
     const headers = [
-        {
-          id:"id"
-        },
-        {
-          id:"service",
-          search: false
-        },
-        {
-          id:"owner",
-          search: true
-        },
-        {
-          id:"description",
-          search: true
-        },
-        {
-          id:"express",
-          search: false
-        },
-        {
-          id:"expected delivery time",
-        },
-        {
-          id:"location",
-          search: true
-        },
-        {
-          id:"details",
-        },
-  
-      ]
-      const [tableData, setTableData] = useState([]);
+      {
+        id:"id"
+      },
+      {
+        id:"name",
+        search: true
+      },
+      {
+        id:"category",
+      },
+      {
+        id:"owner",
+      },
+      {
+        id:"description",
+      },
+      {
+        id:"amount",
+      },
+      {
+        id:"details",
+      },
+    ]
 
 
-      const [dataSource, setDataSource] = useState(tableData);
-  
-      const [dataRows, setDataRows] = useState([])
-  
-          
+    const [tableData, setTableData] = useState([]);
+
+
+    const [dataSource, setDataSource] = useState(tableData);
+
+    const [dataRows, setDataRows] = useState([])
+
+    
     useEffect(() => {
       const fetchData = async () => {
           try {
             const auth_token = localStorage.getItem('auth_token');
 
-            const response = await fetch('https://blueskills3-latest.onrender.com/service_partner/', {
+            const response = await fetch('https://blueskills3-latest.onrender.com/service/', {
               method: "GET", 
               headers: {
                 'Authorization': `Token ${auth_token}`
@@ -83,45 +82,42 @@ const ServicePartner = () => {
   }, []);
 
 
+
     useEffect(()=>{
       const dS =
       dataSource &&
         dataSource.length > 0
           ? dataSource.map((row, idx) => {
             return {
-                id: idx + 1,
-                "service": 
-                (<div className="">
-                  {row["blueskills_service"]}</div>
-                ),
-                "description": (
-                  <div>{row["description"]}</div>
-                ),
-                "owner": 
-                (<div className="">
-                  {row["owner"]}</div>
-                ),
-                "express": 
-                (<div className="">
-                  {row["express"] ? "Available" : "Unavailable"}</div>
-                ),
-                "expected delivery time": 
-                (<div className="">
-                  {row["etd"]}</div>
-                ),
-                "location": 
-                (<div className="">
-                  {row["location"]}</div>
-                ),
-                "details": 
-                (<Link to={`/service-details/${row.id}`}>
-                <div className="w-auto h-[30px] bg-blue-500 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center"> 
-                Details
-            </div>
-            </Link>),
-                
-              };
-            })
+              id: idx + 1,
+              "name": 
+              (<div className="">
+                {row["name"]}</div>
+              ),
+              "category": (
+                <div>{row["category"]}</div>
+              ),
+              "owner": 
+              (<div className="">
+                {row["owner"]}</div>
+              ),
+              "description": 
+              (<div className="">
+                {row["description"]}</div>
+              ),
+              "amount": 
+              (<div className="">
+                {row["amount"]}</div>
+              ),
+              "details": 
+              (<Link to={`/service-details/:serviceId`}>
+              <div className="w-auto h-[30px] bg-blue-500 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center"> 
+              Details
+          </div>
+          </Link>),
+              
+            };
+          })
         : [];
         setDataRows(dS)
     },[dataSource])
@@ -130,7 +126,7 @@ const ServicePartner = () => {
     const tableButton = {
       text: 'Create',
       action: () => {
-        navigate('/partner/create')
+        navigate('/service/create')
       }
     }
 
@@ -166,7 +162,8 @@ const ServicePartner = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Sub category"
+                      title="Offerings"
+                      tab={tab} 
                       headers={headers}
                       tableButton={tableButton}
                     />
@@ -180,4 +177,4 @@ const ServicePartner = () => {
       )
     }
 
-export default ServicePartner
+export default Services

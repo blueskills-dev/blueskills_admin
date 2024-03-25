@@ -17,150 +17,13 @@ import { Link } from 'react-router-dom'
 const Users = () => {
     const [toggleNav, setToggleNav] = useState(false)
 
-  
-    //dataSource --- the non-filterable data source
-    const tableData = 
-    [
-      {
-        "id": 1,
-        "amount": 5000,
-        "reference": "abc123xyz",
-        "currency": "NGN",
-        "status": "pending",
-        "payment_method": "ussd",
-        "metadata": "random_string_1",
-        "created_at": "9th of March 2024 at 2:00pm",
-        "updated_at": "9th of March 2024 at 2:00pm",
-        "booking": "House Cleaning",
-        "invoice": "invoice_1.jpg"
-      },
-      {
-        "id": 2,
-        "amount": 8000,
-        "reference": "def456uvw",
-        "currency": "NGN",
-        "status": "completed",
-        "payment_method": "transfer",
-        "metadata": "random_string_2",
-        "created_at": "10th of March 2024 at 3:30pm",
-        "updated_at": "10th of March 2024 at 3:30pm",
-        "booking": "Car Wash",
-        "invoice": "invoice_2.jpg"
-      },
-      {
-        "id": 3,
-        "amount": 3000,
-        "reference": "ghi789rst",
-        "currency": "NGN",
-        "status": "canceled",
-        "payment_method": "card",
-        "metadata": "random_string_3",
-        "created_at": "11th of March 2024 at 1:15pm",
-        "updated_at": "11th of March 2024 at 1:15pm",
-        "booking": "Gardening Service",
-        "invoice": "invoice_3.jpg"
-      },
-      {
-        "id": 4,
-        "amount": 10000,
-        "reference": "jkl012mno",
-        "currency": "NGN",
-        "status": "pending",
-        "payment_method": "ussd",
-        "metadata": "random_string_4",
-        "created_at": "12th of March 2024 at 11:00am",
-        "updated_at": "12th of March 2024 at 11:00am",
-        "booking": "Plumbing Service",
-        "invoice": "invoice_4.jpg"
-      },
-      {
-        "id": 5,
-        "amount": 6000,
-        "reference": "pqr345uvw",
-        "currency": "NGN",
-        "status": "completed",
-        "payment_method": "transfer",
-        "metadata": "random_string_5",
-        "created_at": "13th of March 2024 at 9:45am",
-        "updated_at": "13th of March 2024 at 9:45am",
-        "booking": "Electrical Repairs",
-        "invoice": "invoice_5.jpg"
-      },
-      {
-        "id": 6,
-        "amount": 7500,
-        "reference": "stu678xyz",
-        "currency": "NGN",
-        "status": "canceled",
-        "payment_method": "card",
-        "metadata": "random_string_6",
-        "created_at": "14th of March 2024 at 8:30am",
-        "updated_at": "14th of March 2024 at 8:30am",
-        "booking": "Painting Service",
-        "invoice": "invoice_6.jpg"
-      },
-      {
-        "id": 7,
-        "amount": 9000,
-        "reference": "vwx901abc",
-        "currency": "NGN",
-        "status": "pending",
-        "payment_method": "ussd",
-        "metadata": "random_string_7",
-        "created_at": "15th of March 2024 at 7:15am",
-        "updated_at": "15th of March 2024 at 7:15am",
-        "booking": "Pest Control",
-        "invoice": "invoice_7.jpg"
-      },
-      {
-        "id": 8,
-        "amount": 4000,
-        "reference": "yza234def",
-        "currency": "NGN",
-        "status": "completed",
-        "payment_method": "transfer",
-        "metadata": "random_string_8",
-        "created_at": "16th of March 2024 at 6:00am",
-        "updated_at": "16th of March 2024 at 6:00am",
-        "booking": "Window Cleaning",
-        "invoice": "invoice_8.jpg"
-      },
-      {
-        "id": 9,
-        "amount": 12000,
-        "reference": "bcd567ghi",
-        "currency": "NGN",
-        "status": "canceled",
-        "payment_method": "card",
-        "metadata": "random_string_9",
-        "created_at": "17th of March 2024 at 4:45am",
-        "updated_at": "17th of March 2024 at 4:45am",
-        "booking": "Carpet Cleaning",
-        "invoice": "invoice_9.jpg"
-      },
-      {
-        "id": 10,
-        "amount": 5500,
-        "reference": "efg890jkl",
-        "currency": "NGN",
-        "status": "pending",
-        "payment_method": "ussd",
-        "metadata": "random_string_10",
-        "created_at": "18th of March 2024 at 3:30am",
-        "updated_at": "18th of March 2024 at 3:30am",
-        "booking": "Roof Repairs",
-        "invoice": "invoice_10.jpg"
-      }
-    ]
-    
-      
-  
-    // table tab for filtering (takes in <row> and <options>) <options> are values in row for the tab filtering 
+
     const tab = {
       row:'status',
       options:['active', 'inactive']
     }
-    //dataSource --- settings for each column [id, search[boolean]]
+
+
     const headers = [
       {
         id:"id"
@@ -190,11 +53,39 @@ const Users = () => {
       },
 
     ]
-    //dataSource --- the filterable data source
+    const [tableData, setTableData] = useState([]);
+
+
     const [dataSource, setDataSource] = useState(tableData);
-    //table rows state
+
     const [dataRows, setDataRows] = useState([])
-    // creating table rows state based on filtered datasource
+
+
+              
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+            const auth_token = localStorage.getItem('auth_token');
+
+            const response = await fetch('https://blueskills3-latest.onrender.com/payment/', {
+              method: "GET", 
+              headers: {
+                'Authorization': `Token ${auth_token}`
+              }
+            });
+              const data = await response.json();
+              setTableData(data);
+              setDataSource(data);
+              console.log(auth_token)
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+        
     useEffect(()=>{
       const dS =
       dataSource &&
