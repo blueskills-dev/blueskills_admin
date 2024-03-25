@@ -30,7 +30,8 @@ import Partners from "./pages/service-partners/ServicePartner"
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<Dashboard />}/>
+      <Route path='/' element={<Login />}/>
+      <Route path='/login' element={<Login />}/>
       <Route path="blueskills-service" element={<BlueskillsServices />} />
       <Route path='/category' element={<Category />}/>
       <Route path='/partners' element={<Partners />}/>
@@ -57,7 +58,7 @@ const App = () => {
       <Route path='/partner/create' element={<CreatePartner />}/>
       <Route path='/blueskills-service/create' element={<CreateService />}/>
       <Route path='/service-gallery/create' element={<CreateGallery />}/>
-      <Route path='/login' element={<Login />}/>
+      
   </Routes>
   )
 }
