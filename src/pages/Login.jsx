@@ -52,7 +52,7 @@ export default function Login() {
           <InputField
             title="Email"
             value={email}
-            onChange={handleEmailChange} // Update to use separate event handler
+            // onChange={handleEmailChange} 
             type="text"
             placeholder="Your email address"
           />
@@ -60,7 +60,7 @@ export default function Login() {
           <InputField
             title="Password"
             value={password}
-            onChange={handlePasswordChange} // Update to use separate event handler
+            // onChange={handlePasswordChange} 
             type="password"
             placeholder="Your password"
           />
