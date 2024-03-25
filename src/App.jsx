@@ -31,7 +31,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Login />}/>
-      <Route path='/login' element={<Login />}/>
+      <Route path='/dashboard' element={<Dashboard />}/>
       <Route path="blueskills-service" element={<BlueskillsServices />} />
       <Route path='/category' element={<Category />}/>
       <Route path='/partners' element={<Partners />}/>

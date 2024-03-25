@@ -21,7 +21,7 @@ export default function Login() {
       });
 
       if (response.ok) {
-        navigate('/');
+        navigate('/dashboard');
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -45,19 +45,13 @@ export default function Login() {
             <div className='fontvariation-600 text-3xl text-center text-primary'>Login</div>
             <InputField
               title="Email" 
-              onChange={(e) => setEmail(e.target.value)}
-              inputAction={(value)=>{
-                console.log(value)
-              }}  
+              onChange={(e) => setEmail(e.target.value)} 
               type="text" 
               placeholder="Your email address"
             />
 
             <InputField
               title="Password" 
-              inputAction={(value)=>{
-                console.log(value)
-              }}  
               onChange={(e) => setPassword(e.target.value)}
               type="password" 
               placeholder="Your password"
