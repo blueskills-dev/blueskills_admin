@@ -63,7 +63,7 @@ const Users = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const auth_token = localStorage.getItem('auth_token');
+               const auth_token = localStorage.getItem('auth_token');
 
               const response = await fetch('https://blueskills3-latest.onrender.com/profile/', {
                 headers: {
@@ -109,7 +109,7 @@ const Users = () => {
                             <div className="">{row["ratings"]}</div>
                         ),
                         "details": (
-                            <Link to={`/user-details/${row.id}`}>
+                            <Link to={`/user-details/${id}`}>
                                 <div className="w-auto h-[30px] bg-blue-500 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center">
                                     Details
                                 </div>

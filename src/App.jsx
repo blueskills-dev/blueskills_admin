@@ -5,12 +5,10 @@ import SubCategory from "./pages/subcategory/Subcategory"
 import Bookings from "./pages/bookings/Bookings"
 import Invoice from "./pages/Invoice"
 import Payments from "./pages/payment/Payments"
-import ServiceGallery from "./pages/service-gallery/ServiceGallery"
 import ServicePartner from "./pages/service-partners/ServicePartner"
 import Users from "./pages/users/Users"
 import UserDetails from "./pages/users/UserDetails"
 import ServicePartnerDetails from "./pages/service-partners/ServicePartnerDetails"
-import ServiceGalleryDetails from "./pages/service-gallery/ServiceGalleryDetails"
 import BookingDetails from "./pages/bookings/BookingDetails"
 import PaymentDetails from "./pages/payment/PaymentDetails"
 import BluskillsServicesDetails from "./pages/service/ServiceDetails"
@@ -18,7 +16,6 @@ import CreateSub from "./pages/subcategory/CreateSubcategory"
 import CreateUser from "./pages/users/createUser"
 import CreateService from "./pages/service/CreateService"
 import CreateBooking from "./pages/bookings/CreateBookings"
-import CreateGallery from "./pages/service-gallery/CreateGallery"
 import CreatePartner from "./pages/service-partners/CreatePartner"
 import CreateCategory from "./pages/category/CreateCategory"
 import Login from "./pages/Login"
@@ -40,13 +37,11 @@ const App = () => {
       <Route path='/category/:id/offerings' element={<Services />}/> //From the Category page directly to the offerings page bypassing sub-category
       <Route path='/bookings' element={<Bookings />}/>
       <Route path='/invoice' element={<Invoice />}/>
-      <Route path='/service-gallery' element={<ServiceGallery />}/>
       <Route path='/payments' element={<Payments />}/>
       <Route path='/service-partners' element={<ServicePartner />}/>
       <Route path='/users' element={<Users />}/>
       <Route path='/user-details/:userId' element={<UserDetails />}/>
       <Route path='/service-details/:serviceId' element={<ServicePartnerDetails />}/>
-      <Route path='/gallery-details/:serviceId' element={<ServiceGalleryDetails />}/>
       <Route path='/bookings-details/:bookingId' element={<BookingDetails />}/>
       <Route path='/payment-details/:paymentId' element={<PaymentDetails />}/>
       <Route path='/service-details/:serviceId' element={<BluskillsServicesDetails />}/>
@@ -56,7 +51,6 @@ const App = () => {
       <Route path='/category/create' element={<CreateCategory />}/>
       <Route path='/partner/create' element={<CreatePartner />}/>
       <Route path='/service/create' element={<CreateService />}/>
-      <Route path='/service-gallery/create' element={<CreateGallery />}/>
       
   </Routes>
   )
