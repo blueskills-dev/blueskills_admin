@@ -65,14 +65,14 @@ const Users = () => {
             try {
                const auth_token = localStorage.getItem('auth_token');
 
-              const response = await fetch('https://blueskills3-latest.onrender.com/profile/', {
+              const response = await fetch('https://blueskills3-latest.onrender.com/users/', {
                 headers: {
                   'Authorization': `Token ${auth_token}`
                 }
               });
                 const data = await response.json();
-                setTableData(data);
-                setDataSource(data);
+                setTableData(data.results);
+                setDataSource(data.results);
                 console.log(auth_token)
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -109,7 +109,7 @@ const Users = () => {
                             <div className="">{row["ratings"]}</div>
                         ),
                         "details": (
-                            <Link to={`/user-details/${id}`}>
+                            <Link to={`/user-details/${row.id}`}>
                                 <div className="w-auto h-[30px] bg-blue-500 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center">
                                     Details
                                 </div>
@@ -125,7 +125,7 @@ const Users = () => {
     const tableButton = {
         text: 'Create',
         action: () => {
-            navigate('/user/create')
+            navigate('/users/create')
         }
     }
 

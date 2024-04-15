@@ -21,10 +21,13 @@ import CreateCategory from "./pages/category/CreateCategory"
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
 import Partners from "./pages/service-partners/ServicePartner"
+import { ToastContainer } from "react-toastify"
 
 
 const App = () => {
   return (
+    <>
+    <ToastContainer/>
     <Routes>
       <Route path='/' element={<Login />}/>
       <Route path='/dashboard' element={<Dashboard />}/>
@@ -42,17 +45,18 @@ const App = () => {
       <Route path='/users' element={<Users />}/>
       <Route path='/user-details/:userId' element={<UserDetails />}/>
       <Route path='/service-details/:serviceId' element={<ServicePartnerDetails />}/>
-      <Route path='/bookings-details/:bookingId' element={<BookingDetails />}/>
+      <Route path='/booking-details/:bookingId' element={<BookingDetails />}/>
       <Route path='/payment-details/:paymentId' element={<PaymentDetails />}/>
       <Route path='/service-details/:serviceId' element={<BluskillsServicesDetails />}/>
       <Route path='/subcategory/create' element={<CreateSub />}/>
-      <Route path='/user/create' element={<CreateUser />}/>
+      <Route path='/users/create' element={<CreateUser />}/>
       <Route path='/bookings/create' element={<CreateBooking />}/>
       <Route path='/category/create' element={<CreateCategory />}/>
       <Route path='/partner/create' element={<CreatePartner />}/>
       <Route path='/service/create' element={<CreateService />}/>
       
   </Routes>
+  </>
   )
 }
 

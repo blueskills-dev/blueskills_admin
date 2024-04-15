@@ -63,8 +63,8 @@ const Category = () => {
               }
             });
               const data = await response.json();
-              setTableData(data);
-              setDataSource(data);
+              setTableData(data.results);
+              setDataSource(data.results);
               console.log(auth_token)
           } catch (error) {
               console.error('Error fetching data:', error);

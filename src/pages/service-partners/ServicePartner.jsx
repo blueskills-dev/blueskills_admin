@@ -64,15 +64,15 @@ const ServicePartner = () => {
           try {
             const auth_token = localStorage.getItem('auth_token');
 
-            const response = await fetch('https://blueskills3-latest.onrender.com/service_partner/', {
+            const response = await fetch('https://blueskills3-latest.onrender.com/service_partners/', {
               method: "GET", 
               headers: {
                 'Authorization': `Token ${auth_token}`
               }
             });
               const data = await response.json();
-              setTableData(data);
-              setDataSource(data);
+              setTableData(data.results);
+              setDataSource(data.results);
               console.log(auth_token)
           } catch (error) {
               console.error('Error fetching data:', error);
@@ -166,7 +166,7 @@ const ServicePartner = () => {
                       dataRows={dataRows}
                       setDataSource={setDataSource}
                       pageSize={5} 
-                      title="Sub category"
+                      title="Service Partners"
                       headers={headers}
                       tableButton={tableButton}
                     />
