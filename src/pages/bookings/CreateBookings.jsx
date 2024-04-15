@@ -81,7 +81,7 @@ const CreateBooking = () => {
             <option value="completed">Completed</option>
           </select>
         </div>
-
+//ndivnfnf
         <div className="mb-4">
           <label  className="block text-sm font-medium text-gray-700">Image</label>
           <input type="text" value={formData.image} onChange={handleChange} className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
