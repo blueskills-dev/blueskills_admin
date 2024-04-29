@@ -115,7 +115,7 @@ const Users = () => {
                 {row["status"]}</div>
               ),
               "details": 
-              (<Link to={`/payment-details/:paymentId`}>
+              (<Link to={`/payment-details/${row.id}`}>
               <div className="w-auto h-[30px] bg-blue-500 text-white pt-[7px] px-[10px] rounded-[5px] cursor-pointer text-center"> 
               Details
           </div>

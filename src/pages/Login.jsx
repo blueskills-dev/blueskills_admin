@@ -49,9 +49,9 @@ export default function Login() {
     } catch (error) {
       console.error('Error during login:', error);
       setError('An error occurred. Please try again.');
-      showToast('An error occurred. Please try again.', 'error'); // Step 3: Display error toast
+      showToast('An error occurred. Please try again.', 'error');
     } finally {
-      setLoading(false); // Step 2: Set loading state back to false
+      setLoading(false); 
     }
   };
 
